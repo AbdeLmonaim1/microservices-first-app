@@ -21,7 +21,7 @@ public class OrderService {
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
         // 2. Convert OrderItemDTO to OrderItem
-        List<OrderItems> orderItemsList = orderRequest.getOrderItems()
+        List<OrderItems> orderItemsList = orderRequest.getOrderItemsdto()
                 .stream().map(mapper::toOrderItems).toList();
         order.setOrderItems(orderItemsList);
         List<String> skuCodes = order.getOrderItems().stream()

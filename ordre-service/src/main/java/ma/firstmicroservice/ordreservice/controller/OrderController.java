@@ -7,7 +7,6 @@ import ma.firstmicroservice.ordreservice.service.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api/order")
@@ -17,9 +16,10 @@ public class OrderController {
     private OrderService orderService;
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CompletableFuture<String> placeOrder(@RequestBody OrderRequest orderRequest) {
-        log.info("Placing Order");
-        return CompletableFuture.supplyAsync(() -> orderService.saveOrder(orderRequest));
+    public String saveOrder(@RequestBody OrderRequest orderRequest) {
+        orderService.saveOrder(orderRequest);
+        log.info("Saving Order");
+        return "Order saved successfully";
     }
 
 
